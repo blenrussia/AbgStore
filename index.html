@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGUF Studio — Магазин игр</title>
+  <style>
+    :root {
+      --bg: #1b2838;
+      --card-bg: #2a475e;
+      --header-bg: #171a21;
+      --text: #c7d5e0;
+      --accent: #66c0f4;
+      --green: #5fb041;
+      --gray: #93a4b3;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border-radius: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      transition: all 0.25s ease;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", "Roboto", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* === ШАПКА === */
+    header {
+      background: var(--header-bg);
+      color: #fff;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      color: var(--accent);
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 280px;
+      display: flex;
+      align-items: center;
+      background: #2a475e;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-box input::placeholder {
+      color: #9bb2c1;
+    }
+
+    .search-icon {
+      padding: 8px 10px;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    /* === ИГРЫ === */
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .game-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      width: 280px;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 18px rgba(102,192,244,0.3);
+    }
+
+    .game-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #4c6b22;
+      color: #d2efa9;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .game-info {
+      padding: 15px 18px 20px;
+    }
+
+    .game-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+
+    .game-desc {
+      font-size: 0.92rem;
+      color: var(--gray);
+      margin-bottom: 15px;
+      min-height: 45px;
+    }
+
+    .price-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+      padding: 6px 10px;
+    }
+
+    .price-old {
+      text-decoration: line-through;
+      color: #8899a8;
+      font-size: 0.9rem;
+    }
+
+    .price-new {
+      color: #d2efa9;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .btn-play {
+      display: block;
+      background: var(--green);
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 4px;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .btn-play:hover {
+      background: #79d062;
+    }
+
+    footer {
+      text-align: center;
+      color: #667d8c;
+      font-size: 13px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 20px 10px;
+    }
+
+    @media (max-width: 600px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .search-box {
+        max-width: 100%;
+      }
+      main {
+        flex-direction: column;
+        align-items: center;
+      }
+      .game-card {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Gmn store </h1>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Поиск игр...">
+      </div>
+    </div>
+  </header>
+
+  <main id="gameList">
+    <a href="http://inorssurvival.c6t.ru" target="_blank" class="game-card" data-title="Inors Survival" data-desc="Выживание в мрачном городе, инди игра, постапокалипсис">
+      <div class="discount-badge">-100%</div>
+      <img src="https://i.yapx.ru/a3d55.png" alt="Inors Survival" class="game-image">
+      <div class="game-info">
+        <div class="game-title">Inors Survival</div>
+        <div class="game-desc">
+          Выживайте в мрачном городе, ищите ресурсы и спасайтесь от опасностей. Атмосферная инди-игра.
+        </div>
+        <div class="price-block">
+          <div class="price-old">$1.00</div>
+          <div class="price-new">Бесплатно</div>
+        </div>
+        <div class="btn-play">Подробнее</div>
+      </div>
+    </a>
+  </main>
+
+  <footer>© 2025 SGUF Studio. Все права защищены.</footer>
+
+  <script>
+    // Поиск игр
+    const searchInput = document.getElementById('searchInput');
+    const gameCards = document.querySelectorAll('.game-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      gameCards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const desc = card.getAttribute('data-desc').toLowerCase();
+        if (title.includes(query) || desc.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
